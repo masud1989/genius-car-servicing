@@ -1,0 +1,12 @@
+/* .services-title{
+    color:seagreen;
+} */
+.service{
+    border: 1px solid lightslategray;
+    border-radius:10px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+
