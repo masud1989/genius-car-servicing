@@ -10,7 +10,7 @@ const Banar = () => {
     setIndex(selectedIndex);
   };
     return (
-            <div className="container">
+            <div className="">
                 <Carousel>
     <Carousel.Item interval={1000}>
         <img
