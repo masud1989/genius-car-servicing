@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ServiceDetails = () => {
     const {serviceId} = useParams();
@@ -7,6 +7,11 @@ const ServiceDetails = () => {
         <div>
             <h1>This is Service Details Page..</h1>
             <h2>This is Details od ID no: {serviceId}</h2>
+            <div className='text-center'>
+                <Link to='/checkout'>
+                    <button className='btn btn-danger'>Proceed Checkout</button>
+                </Link>
+            </div>
         </div>
     );
 };
