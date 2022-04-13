@@ -1,9 +1,56 @@
 import React from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
+
+   const navigate = useNavigate();
+
+    const navigateLogin = () => {
+        navigate('/login');
+    }
+
+    const handleRegister = (event) => {
+        event.preventDefault();
+    }
+
     return (
-        <div>
-            <h3>Please  Register Here</h3> 
+            <div className="container w-50 mx-auto mt-5">
+            <h2 className="text-info">Please Register </h2>
+            <Form onSubmit={handleRegister}>
+            <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>Your Name:</Form.Label>
+                <Form.Control  type="text" placeholder="Enter Your Name" required />
+                <Form.Text className="text-muted">
+                Name will be saved.
+                </Form.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address:</Form.Label>
+                <Form.Control  type="email" placeholder="Enter email" required />
+                <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+                </Form.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password:</Form.Label>
+                <Form.Control   type="password" placeholder="Password" required />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Confirm Password:</Form.Label>
+                <Form.Control   type="password" placeholder="Confirm Password" required />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
+            <Button variant="info" type="submit">
+                Register
+            </Button>
+            </Form>
+            <p>Already Registered?.. <Link to="/login" onClick={navigateLogin} className="text-warning text-decoration-none">Please Login</Link></p>
         </div>
     );
 };
