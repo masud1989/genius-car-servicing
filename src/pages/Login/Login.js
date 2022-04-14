@@ -4,7 +4,8 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from './SocialLogin';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
 
     const emailRef = useRef('');
@@ -45,7 +46,7 @@ const Login = () => {
     const resetPassword = async () =>{
         const email = emailRef.current.value;
         await sendPasswordResetEmail(email);
-        alert('Sent email');
+        toast('Sent email');
     }
 
     return (
@@ -71,10 +72,11 @@ const Login = () => {
                 Login
             </Button>
             </Form>
-            <p>Password Forgotten? <Link to="/login" onClick={resetPassword} className="text-primary text-decoration-none">Reset Password</Link></p>
+            <p>Password Forgotten? <button onClick={resetPassword} className="btn btn-link text-primary text-decoration-none ">Reset Password</button></p>
             <p>New Here?.. <Link to="/register" onClick={navigateRegister} className="text-warning text-decoration-none">Please Register</Link></p>
             {errorElement}
             <SocialLogin></SocialLogin>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
