@@ -12,6 +12,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
+    let errorElement;
 
     const [
         signInWithEmailAndPassword,
@@ -19,6 +20,13 @@ const Login = () => {
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth);
+
+     if(error){
+        errorElement=
+        <div>
+          <p className='text-danger'>Error: {error.message}</p>
+        </div>
+     }
 
       if(user){
           navigate(from, {replace: true});
@@ -60,6 +68,7 @@ const Login = () => {
             </Button>
             </Form>
             <p>New Here?.. <Link to="/register" onClick={navigateRegister} className="text-warning text-decoration-none">Please Register</Link></p>
+            {errorElement}
             <SocialLogin></SocialLogin>
         </div>
     );
