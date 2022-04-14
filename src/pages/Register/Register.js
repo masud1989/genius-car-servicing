@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth';
@@ -6,7 +6,7 @@ import auth from '../../firebase.init';
 import SocialLogin from '../Login/SocialLogin';
 
 const Register = () => {
-   
+   const [agree, setAgree] = useState(false);
    const [ createUserWithEmailAndPassword,
             user,
             loading,
@@ -29,8 +29,11 @@ const Register = () => {
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
+        // const agree = event.targer.terms.checked;
 
-        createUserWithEmailAndPassword(email, password);
+        if(agree){
+            createUserWithEmailAndPassword(email, password);
+        }
 
     }
 
@@ -64,9 +67,9 @@ const Register = () => {
                 <Form.Control name="confirm-password"  type="password" placeholder="Confirm Password" required />
             </Form.Group> */}
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Accept Our Terms and Conditions" />
+                <Form.Check className={ agree ? 'text-info' : 'text-danger' } onClick={()=>setAgree(!agree)} name="terms" type="checkbox" label="Accept Our Terms and Conditions" />
             </Form.Group>
-            <Button className='btn btn-primary w-50 mx-auto d-block mb-3 text-white fw-bold mt-3' variant="info" type="submit">
+            <Button disabled={!agree} className='btn btn-primary w-50 mx-auto d-block mb-3 text-white fw-bold mt-3' variant="info" type="submit">
                 Register
             </Button>
             </Form>
